@@ -15,21 +15,21 @@ import java.util.*
 
 class HomeFragment : Fragment(), HomeContract.View {
 
-    private var mPresenter : HomePresenter = HomePresenter(context!!)
+    private var mPresenter : HomePresenter? = null
 
     private val mAdapter by lazy {
         val adapter = context?.let {
             MemeAdapter(it, object : MemeAdapter.OnItemClickListener{
                 override fun onItemClicked(item: MemeModel) {
-                    mPresenter.playerAudio(item)
+                    mPresenter?.playerAudio(item)
                 }
 
                 override fun onShareClicked(item: MemeModel) {
-                    mPresenter.sharedMeme(item)
+                    mPresenter?.sharedMeme(item)
                 }
 
                 override fun onFavoriteClicked(item: MemeModel) {
-                    mPresenter.favoriteMeme(item)
+                    mPresenter?.favoriteMeme(item)
                 }
             })
         }
@@ -41,7 +41,14 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun onResume() {
         super.onResume()
-        mPresenter.getList()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mPresenter = HomePresenter(this.context!!)
+        mPresenter?.attach(this)
+        mPresenter?.getList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

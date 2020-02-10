@@ -7,19 +7,19 @@ import br.com.memes.R;
 public class SetMemes {
     public static ArrayList<MemeModel> setMemes(ArrayList memes) {
         MemeModel p;
-        p = new MemeModel("1", "John Cena", "johncena.mp3", "hjATg9Niezo", R.drawable.johncena);
+        p = new MemeModel("1", "John Cena", "johncena.mp3", "hjATg9Niezo", R.drawable.johncena, false);
         memes.add(p);
 
-        p = new MemeModel("2", "Mais ou menos", "maisoumenos.mp3", "PjIQB-PbceQ", R.drawable.maisoumenos);
+        p = new MemeModel("2", "Mais ou menos", "maisoumenos.mp3", "PjIQB-PbceQ", R.drawable.maisoumenos, false);
         memes.add(p);
 
-        p = new MemeModel("3", "Acerto mizeravi", "acertomizeravi.mp3", "VbQbg3mF4Sg", R.drawable.acertomizeravi);
+        p = new MemeModel("3", "Acerto mizeravi", "acertomizeravi.mp3", "VbQbg3mF4Sg", R.drawable.acertomizeravi, false);
         memes.add(p);
 
-        p = new MemeModel("4", "Que burro, dá zero pra ele", "aiqueburrodazeropraele.mp3", "se2Qngm0VGc", R.drawable.aiqueburrodazeropraele);
+        p = new MemeModel("4", "Que burro, dá zero pra ele", "aiqueburrodazeropraele.mp3", "se2Qngm0VGc", R.drawable.aiqueburrodazeropraele, false);
         memes.add(p);
 
-        p = new MemeModel("5", "Ba dum tss", "badumtss.mp3", "YMCZS0sAQBM", R.drawable.badumtss);
+        p = new MemeModel("5", "Ba dum tss", "badumtss.mp3", "YMCZS0sAQBM", R.drawable.badumtss, false);
         memes.add(p);
 
         /*p = new Meme();

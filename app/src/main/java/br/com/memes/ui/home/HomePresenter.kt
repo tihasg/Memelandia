@@ -10,7 +10,7 @@ import java.util.ArrayList
 
 class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
 
-    private  var mView : HomeContract.View? = null
+    private var mView : HomeContract.View? = null
     var memes: ArrayList<MemeModel> = ArrayList()
     private var player : MediaPlayer? = null
 
