@@ -24,7 +24,7 @@
             tools:srcCompat="@tools:sample/avatars[0]" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/img_shared"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -36,7 +36,7 @@
             app:srcCompat="@drawable/ic_share" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/img_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

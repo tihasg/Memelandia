@@ -36,14 +36,25 @@ class MemeAdapter(private val context: Context, private val onItemClickListener:
 
     interface OnItemClickListener{
         fun onItemClicked( item : MemeModel )
+        fun onShareClicked( item : MemeModel )
+        fun onFavoriteClicked( item : MemeModel )
     }
 
     inner class ItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         fun bind(item : MemeModel, onItemClickListerner: OnItemClickListener){
 
             itemView.apply {
-                setOnClickListener {
+
+                img_meme.setOnClickListener {
                     onItemClickListerner.onItemClicked( item )
+                }
+
+                img_shared.setOnClickListener {
+                    onItemClickListerner.onShareClicked( item )
+                }
+
+                img_favorite.setOnClickListener {
+                    onItemClickListerner.onFavoriteClicked( item )
                 }
 
                 Picasso.get().load(item.img).into(img_meme)
