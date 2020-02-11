@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import br.com.memes.R
@@ -33,19 +34,17 @@ class HomeFragment : Fragment(), HomeContract.View {
                 }
             })
         }
-        adapter?.let {
-            rv_meme.setup(it, layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL))
-        }
+        adapter?.let {rv_meme.setup(it, layoutManager = GridLayoutManager(context, 3))}
         adapter
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
 
+    private fun setup() {
         mPresenter = HomePresenter(this.context!!)
         mPresenter?.attach(this)
         mPresenter?.getList()

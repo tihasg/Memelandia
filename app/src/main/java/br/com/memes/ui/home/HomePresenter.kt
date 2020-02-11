@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.res.AssetFileDescriptor
 import android.media.MediaPlayer
 import br.com.memes.model.MemeModel
-import br.com.memes.model.SetMemes
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.IOException
-import java.util.ArrayList
+import java.io.InputStream
+import java.nio.charset.Charset
 
 class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
 
@@ -15,7 +17,9 @@ class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
     private var player : MediaPlayer? = null
 
     override fun getList() {
-        mView?.setList(SetMemes.setMemes(memes))
+        val typeToken = object : TypeToken<ArrayList<MemeModel>>() {}.type
+        val listMemes = Gson().fromJson<ArrayList<MemeModel>>(loadJSONFromAsset(), typeToken)
+        mView?.setList(listMemes)
     }
 
     override fun setError(error: Throwable) {
@@ -52,5 +56,21 @@ class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
 
     override fun detach() {
         mView = null
+    }
+
+    private fun loadJSONFromAsset() : String {
+        var json  = ""
+        try {
+            val inputStream : InputStream = mContext.assets.open("meme.json")
+            val size: Int = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            json = String(buffer, Charset.forName("UTF-8"))
+        } catch ( e : Exception ){
+            e.printStackTrace()
+            return ""
+        }
+        return json
     }
 }

@@ -58,6 +58,7 @@ class MemeAdapter(private val context: Context, private val onItemClickListener:
                 }
 
                 Picasso.get().load(item.img).into(img_meme)
+                tv_title.text = item.name
 
             }
         }
