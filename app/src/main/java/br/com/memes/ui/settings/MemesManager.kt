@@ -24,7 +24,6 @@ class MemesManager(private var _context: Context) {
 
     companion object {
         private val PREF_NAME = "Memes"
-        // Color
         private val KEY_COLOR = "color"
     }
 }

@@ -13,13 +13,22 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import br.com.memes.MainActivity
 import br.com.memes.R
+import com.skydoves.colorpickerview.ColorEnvelope
+import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment(), SettingsContract.View {
 
-    private var mPresenter : SettingsPresenter? = null
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private var mPresenter: SettingsPresenter? = null
+    private var memesManager: MemesManager? = null
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -30,7 +39,24 @@ class SettingsFragment : Fragment(), SettingsContract.View {
 
     private fun setup() {
         mPresenter = SettingsPresenter(this.context!!)
+        memesManager = MemesManager(this.context!!)
         mPresenter?.attach(this)
+
+        theme_color_img.setBackgroundColor(Color.parseColor(memesManager?.color))
+        theme_card.setOnClickListener {
+            val builder =
+                ColorPickerDialog.Builder(this.context!!, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                    .setTitle(getString(R.string.settings_escolhe))
+                    .setPositiveButton(
+                        getString(R.string.setting_confimar),
+                        ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
+                    .setNegativeButton(
+                        getString(R.string.settings_cancel)
+                    ) { dialogInterface, _ -> dialogInterface.dismiss() }
+            builder.setCancelable(false)
+            builder.show()
+
+        }
 
         reset_settings_card.setOnClickListener { view ->
             val alertDialog =
@@ -53,28 +79,23 @@ class SettingsFragment : Fragment(), SettingsContract.View {
             alertDialog.create()
             alertDialog.setOnShowListener {
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                    .setTextColor(MainActivity.themeColor)
+                    .setTextColor(Color.parseColor(memesManager?.color))
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setTextColor(MainActivity.themeColor)
+                    .setTextColor(Color.parseColor(memesManager?.color))
             }
             alertDialog.show()
         }
     }
 
     fun resetAllSettings() {
-        setHomeActivityColor(Settings.DEF_THEME_COLOR)
+        setHomeActivityColor(Color.parseColor("#42a3b2"))
     }
 
     fun setHomeActivityColor(color: Int) {
-        MainActivity.settings?.themeColor= color
-        MainActivity.themeColor = color
+        memesManager?.color = "#42a3b2"
+        Color.parseColor(memesManager?.color)
         theme_color_img.setBackgroundColor(color)
-        if (Build.VERSION.SDK_INT >= 21) {
-            val window = (context as Activity?)!!.window
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = getDarkColor(color)
-        }
+        setColor()
     }
 
     fun getDarkColor(color: Int): Int {
@@ -93,12 +114,22 @@ class SettingsFragment : Fragment(), SettingsContract.View {
     override fun showLoading(loading: Boolean) {
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun setLayoutColor(envelope: ColorEnvelope?) {
+        theme_color_img.setBackgroundColor(Color.parseColor("#" + envelope?.hexCode))
+        memesManager?.color = "#" + envelope?.hexCode
+        setColor()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    fun setColor(){
+        MainActivity.tooBar!!.setBackgroundColor(Color.parseColor(memesManager?.color))
+        MainActivity.navView!!.setBackgroundColor(Color.parseColor(memesManager?.color))
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = (context as Activity?)!!.window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = getDarkColor(Color.parseColor(memesManager?.color))
+        }
     }
+
 
 }

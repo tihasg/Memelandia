@@ -1,12 +1,14 @@
 package br.com.memes.ui.home
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.memes.R
 import br.com.memes.model.MemeModel
+import br.com.memes.ui.settings.MemesManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_meme.view.*
 
@@ -14,7 +16,7 @@ class MemeAdapter(private val context: Context, private val onItemClickListener:
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var list: List<MemeModel> = arrayListOf()
-
+    private var memesManager: MemesManager?=null
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_meme, parent, false)
         return ItemViewHolder(view)
@@ -44,7 +46,8 @@ class MemeAdapter(private val context: Context, private val onItemClickListener:
         fun bind(item : MemeModel, onItemClickListerner: OnItemClickListener){
 
             itemView.apply {
-
+                memesManager= MemesManager(context)
+                colorBackgroundMemes.setBackgroundColor(Color.parseColor(memesManager?.color))
                 img_meme.setOnClickListener {
                     onItemClickListerner.onItemClicked( item )
                 }

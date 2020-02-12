@@ -1,10 +1,13 @@
 package br.com.memes
 
 import android.Manifest
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -16,30 +19,26 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import br.com.memes.ui.settings.Settings
+import br.com.memes.ui.settings.MemesManager
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class MainActivity : AppCompatActivity() {
     private val MY_PERMISSION_RQUEST_STORAGE = 1
     private lateinit var appBarConfiguration: AppBarConfiguration
-    var navController : NavController? = null
+    private var memesManager: MemesManager? = null
+    var navController: NavController? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-
+        memesManager = MemesManager(this)
         setSupportActionBar(toolbar)
 
         setupPermissions()
-
-        if (settings == null) {
-            settings = Settings()
-            toolbar!!.setBackgroundColor(settings!!.themeColor)
-            nav_view!!.setBackgroundColor(settings!!.themeColor)
-        }
+        setColor()
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -54,17 +53,54 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController!!)
     }
 
-    private fun setupPermissions(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSION_RQUEST_STORAGE)
+    private fun setupPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    MY_PERMISSION_RQUEST_STORAGE
+                )
             } else {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSION_RQUEST_STORAGE
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    MY_PERMISSION_RQUEST_STORAGE
                 )
             }
         }
     }
 
+    fun setColor(){
+        navView = findViewById(R.id.nav_view)
+        tooBar = findViewById(R.id.toolbar)
+        tooBar!!.setBackgroundColor(Color.parseColor(memesManager?.color))
+        navView!!.setBackgroundColor(Color.parseColor(memesManager?.color))
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = (this as Activity?)!!.window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = getDarkColor(Color.parseColor(memesManager?.color))
+        }
+    }
+
+    fun getDarkColor(color: Int): Int {
+        var darkColor = 0
+        val r = Math.max(Color.red(color) - 25, 0)
+        val g = Math.max(Color.green(color) - 25, 0)
+        val b = Math.max(Color.blue(color) - 25, 0)
+        darkColor = Color.rgb(r, g, b)
+        return darkColor
+    }
+    
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_settings -> {
@@ -78,13 +114,19 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onResume() {
+        super.onResume()
+        setColor()
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     companion object{
-        var themeColor = Color.parseColor("#B24242")
-        var settings: Settings? = null
+        var navView : NavigationView?=null
+        var tooBar: Toolbar?=null
     }
+
 }

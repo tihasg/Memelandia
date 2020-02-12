@@ -18,4 +18,6 @@
     <string name="setting_op_txt">Esta operação irá redefinir todas as configurações de cor para a padrão.</string>
     <string name="settings_restaurar">Restabelecer</string>
     <string name="settings_cancel">Cancelar</string>
+    <string name="setting_confimar">Confimar</string>
+    <string name="settings_escolhe">Escolher Cor</string>
 </resources>
