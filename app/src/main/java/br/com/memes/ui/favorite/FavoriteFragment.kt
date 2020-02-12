@@ -12,6 +12,7 @@ import br.com.memes.R
 import br.com.memes.utils.extensions.setup
 import br.com.memes.model.MemeModel
 import br.com.memes.ui.home.MemeAdapter
+import br.com.memes.utils.ShareSom
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import java.io.IOException
@@ -29,6 +30,7 @@ class FavoriteFragment : Fragment(), FavoriteContract.View {
                 }
 
                 override fun onShareClicked(item: MemeModel) {
+                    sharedMeme(item)
                 }
 
                 override fun onFavoriteClicked(item: MemeModel) {
@@ -82,6 +84,10 @@ class FavoriteFragment : Fragment(), FavoriteContract.View {
         if(player != null){
             player!!.stop()
         }
+    }
+
+    private fun sharedMeme(memeModel: MemeModel){
+        ShareSom.shareAudio(this.context!!,memeModel.audio!!)
     }
 
     private fun playerAudio(memeModel: MemeModel) {

@@ -99,7 +99,6 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun sharedMeme(memeModel: MemeModel){
-
         ShareSom.shareAudio(this.context!!,memeModel.audio!!)
     }
 
