@@ -14,17 +14,17 @@
             android:title="@string/menu_favorited" />
     </group>
 
-    <!--<item android:title="Communicate">
+    <item android:title="@string/app_name">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_emoticon"
                 android:title="@string/menu_share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_emoticon"
                 android:title="@string/menu_send" />
         </menu>
-    </item> -->
+    </item>
 
 </menu>

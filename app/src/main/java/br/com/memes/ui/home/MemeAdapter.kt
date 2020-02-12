@@ -63,7 +63,7 @@ class MemeAdapter(private val context: Context, private val onItemClickListener:
                     img_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite))
                 }
 
-                //Picasso.get().load(context.getDrawable(R.drawable.johncena2)).into(img_meme)
+                //Picasso.get().load(context.getDrawable(R.drawable.logo)).into(img_meme)
                 tv_title.text = item.name
 
             }

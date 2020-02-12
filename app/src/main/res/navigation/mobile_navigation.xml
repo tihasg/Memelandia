@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="br.com.memes.ui.gallery.GalleryFragment"
+        android:name="br.com.memes.ui.favorite.FavoriteFragment"
         android:label="@string/menu_favorited"
         tools:layout="@layout/fragment_gallery" />
 </navigation>
