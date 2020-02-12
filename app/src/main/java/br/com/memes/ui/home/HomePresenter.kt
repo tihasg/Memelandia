@@ -7,6 +7,7 @@ import android.content.res.AssetManager
 import android.media.MediaPlayer
 import android.util.Log
 import androidx.core.content.FileProvider
+import br.com.memes.MyApplication
 import br.com.memes.model.MemeModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -20,33 +21,30 @@ class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
 
     private var mView : HomeContract.View? = null
     var memes: ArrayList<MemeModel> = ArrayList()
-    private var player : MediaPlayer? = null
+
 
     override fun getList() {
-        val typeToken = object : TypeToken<ArrayList<MemeModel>>() {}.type
-        val listMemes = Gson().fromJson<ArrayList<MemeModel>>(loadJSONFromAsset(), typeToken)
-        mView?.setList(listMemes)
+        var allMemes = MyApplication.database?.memeDao()?.getAllMemes()
+
+        if(allMemes != null && allMemes.isEmpty()){
+            val typeToken = object : TypeToken<ArrayList<MemeModel>>() {}.type
+            val listMemes = Gson().fromJson<ArrayList<MemeModel>>(loadJSONFromAsset(), typeToken)
+
+            listMemes.forEach {
+                MyApplication.database?.memeDao()?.insertMeme(it)
+            }
+
+            allMemes = MyApplication.database?.memeDao()?.getAllMemes()
+
+        }
+
+        allMemes?.let { mView?.setList(it) }
     }
 
     override fun setError(error: Throwable) {
 
     }
 
-    override fun playerAudio(memeModel: MemeModel) {
-        try {
-            val afd: AssetFileDescriptor = mContext.assets!!.openFd(memeModel.audio)
-            if (player != null) {
-                player!!.stop()
-                player!!.reset()
-            }
-            player = MediaPlayer()
-            player!!.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
-            player!!.prepare()
-            player!!.start()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
 
     override fun sharedMeme(memeModel: MemeModel) {
 
@@ -54,7 +52,15 @@ class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
 
 
     override fun favoriteMeme(memeModel: MemeModel) {
-        memeModel.isFavorite = true
+        memeModel.isFavorite = !memeModel.isFavorite
+        MyApplication.database?.memeDao()?.updateMeme(memeModel)
+        mView?.notifyDataChanged()
+
+        if(memeModel.isFavorite){
+            mView?.displayMessageFavorite()
+        } else {
+            mView?.displayMessageNotFavorite()
+        }
     }
 
     override fun attach(view: HomeContract.View) {

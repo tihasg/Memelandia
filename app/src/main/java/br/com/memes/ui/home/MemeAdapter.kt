@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_meme.view.*
 class MemeAdapter(private val context: Context, private val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var list: ArrayList<MemeModel> = arrayListOf()
+    var list: List<MemeModel> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_meme, parent, false)
@@ -31,7 +31,7 @@ class MemeAdapter(private val context: Context, private val onItemClickListener:
     }
 
     fun setMeme(listMemes: List<MemeModel>){
-        list.addAll(listMemes)
+        list = listMemes
     }
 
     interface OnItemClickListener{
@@ -57,11 +57,18 @@ class MemeAdapter(private val context: Context, private val onItemClickListener:
                     onItemClickListerner.onFavoriteClicked( item )
                 }
 
-                Picasso.get().load(item.img).into(img_meme)
+                if(item.isFavorite){
+                    img_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_red))
+                } else {
+                    img_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite))
+                }
+
+                //Picasso.get().load(context.getDrawable(R.drawable.johncena2)).into(img_meme)
                 tv_title.text = item.name
 
             }
         }
+
     }
 
 

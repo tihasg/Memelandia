@@ -7,7 +7,7 @@ import br.com.memes.R;
 public class SetMemes {
     public static ArrayList<MemeModel> setMemes(ArrayList memes) {
         MemeModel p;
-        p = new MemeModel("1", "John Cena", "johncena.mp3", "hjATg9Niezo", R.drawable.johncena, false);
+        p = new MemeModel("1", "John Cena", "johncena.mp3", "hjATg9Niezo", R.drawable.johncena2, false);
         memes.add(p);
 
         p = new MemeModel("2", "Mais ou menos", "maisoumenos.mp3", "PjIQB-PbceQ", R.drawable.maisoumenos, false);
