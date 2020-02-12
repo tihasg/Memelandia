@@ -5,7 +5,8 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_search">Buscar Memes</string>
+    <string name="action_settings">Configuraçōes</string>
 
     <string name="menu_meme">Memes</string>
     <string name="menu_favorited">Favoritos</string>

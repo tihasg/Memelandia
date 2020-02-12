@@ -14,7 +14,7 @@ import br.com.memes.model.MemeModel
 import br.com.memes.ui.home.MemeAdapter
 import br.com.memes.utils.ShareSom
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_gallery.*
+import kotlinx.android.synthetic.main.fragment_favorite.*
 import java.io.IOException
 
 class FavoriteFragment : Fragment(), FavoriteContract.View {
@@ -43,7 +43,7 @@ class FavoriteFragment : Fragment(), FavoriteContract.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_gallery, container, false)
+        return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
