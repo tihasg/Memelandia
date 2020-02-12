@@ -40,6 +40,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "com.github.skydoves:colorpickerpreference:2.0.0"
 
     def archRoomVersion = '2.2.2'
     implementation "android.arch.persistence.room:runtime:$archRoomVersion"

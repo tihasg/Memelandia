@@ -3,16 +3,14 @@ package br.com.memes.ui.favorite
 import android.content.res.AssetFileDescriptor
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.memes.R
-import br.com.memes.utils.extensions.setup
 import br.com.memes.model.MemeModel
 import br.com.memes.ui.home.MemeAdapter
 import br.com.memes.utils.ShareSom
+import br.com.memes.utils.extensions.setup
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import java.io.IOException
@@ -106,12 +104,17 @@ class FavoriteFragment : Fragment(), FavoriteContract.View {
         }
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         if(player != null){
             player!!.stop()
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater!!.inflate(R.menu.menu_home, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }

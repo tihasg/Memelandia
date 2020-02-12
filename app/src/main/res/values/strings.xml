@@ -4,10 +4,18 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_search">Buscar Memes</string>
     <string name="action_settings">Configuraçōes</string>
+    <string name="action_backs">Voltar</string>
 
     <string name="menu_meme">Memes</string>
     <string name="menu_favorited">Favoritos</string>
     <string name="menu_settings">Configuraçōes</string>
     <string name="menu_share">Compartilhar App</string>
     <string name="menu_send">Avaliar App</string>
+
+    <!-- Settings-->
+    <string name="settings_rest_sucess">As configurações foram redefinidas</string>
+    <string name="setting_redifinir">Redefinir configurações?</string>
+    <string name="setting_op_txt">Esta operação irá redefinir todas as configurações de cor para a padrão.</string>
+    <string name="settings_restaurar">Restabelecer</string>
+    <string name="settings_cancel">Cancelar</string>
 </resources>
