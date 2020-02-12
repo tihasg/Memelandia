@@ -47,7 +47,8 @@ class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
 
 
     override fun sharedMeme(memeModel: MemeModel) {
-
+        mView?.notifyDataChanged()
+        mView?.displayShare()
     }
 
 

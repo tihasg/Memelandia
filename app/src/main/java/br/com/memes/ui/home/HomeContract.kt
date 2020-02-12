@@ -12,6 +12,7 @@ interface HomeContract {
         fun notifyDataChanged()
         fun displayMessageFavorite()
         fun displayMessageNotFavorite()
+        fun displayShare()
     }
 
     interface Presenter : BaseContract.Presenter<View> {

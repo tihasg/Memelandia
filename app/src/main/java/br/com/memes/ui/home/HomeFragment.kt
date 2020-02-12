@@ -7,8 +7,9 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.memes.R
-import br.com.memes.extensions.setup
+import br.com.memes.utils.extensions.setup
 import br.com.memes.model.MemeModel
+import br.com.memes.utils.ShareSom
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.File
@@ -91,25 +92,20 @@ class HomeFragment : Fragment(), HomeContract.View {
         snackbar.show()
     }
 
-    private fun sharedMeme(memeModel: MemeModel){
-
+    override fun displayShare() {
+        val snackbar = Snackbar
+            .make(fragment_meme, "Compartilhar o som do meme no!", Snackbar.LENGTH_LONG)
+        snackbar.show()
     }
 
-    @Throws(IOException::class)
-    private fun copy(inputStream: InputStream, dst: File) {
-        val out = FileOutputStream(dst)
-        val buf = ByteArray(inputStream.available())
-        var len: Int
-        while (inputStream.read(buf).also { len = it } > 0) {
-            out.write(buf, 0, len)
-        }
-        inputStream.close()
-        out.close()
+    private fun sharedMeme(memeModel: MemeModel){
+
+        ShareSom.shareAudio(this.context!!,memeModel.audio!!)
     }
 
     private fun playerAudio(memeModel: MemeModel) {
         try {
-            val afd: AssetFileDescriptor = context?.assets!!.openFd("audio/${memeModel.audio}")
+            val afd: AssetFileDescriptor = context?.assets!!.openFd(memeModel.audio)
             if (player != null) {
                 player!!.stop()
                 player!!.reset()

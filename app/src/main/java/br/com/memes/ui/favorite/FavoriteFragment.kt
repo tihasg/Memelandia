@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.memes.R
-import br.com.memes.extensions.setup
+import br.com.memes.utils.extensions.setup
 import br.com.memes.model.MemeModel
 import br.com.memes.ui.home.MemeAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -86,7 +86,7 @@ class FavoriteFragment : Fragment(), FavoriteContract.View {
 
     private fun playerAudio(memeModel: MemeModel) {
         try {
-            val afd: AssetFileDescriptor = context?.assets!!.openFd("audio/${memeModel.audio}")
+            val afd: AssetFileDescriptor = context?.assets!!.openFd("som/${memeModel.audio}")
             if (player != null) {
                 player!!.stop()
                 player!!.reset()
