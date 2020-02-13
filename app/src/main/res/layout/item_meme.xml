@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardBackgroundColor="@android:color/background_dark"
-    app:cardCornerRadius="8dp">
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/colorBackgroundMemes"
@@ -16,9 +18,9 @@
 
         <ImageView
             android:id="@+id/img_meme"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,7 @@
 package br.com.memes.ui.favorite
 
 import android.content.res.AssetFileDescriptor
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.*
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import br.com.memes.R
 import br.com.memes.model.MemeModel
 import br.com.memes.ui.home.MemeAdapter
+import br.com.memes.ui.settings.MemesManager
 import br.com.memes.utils.ShareSom
 import br.com.memes.utils.extensions.setup
 import com.google.android.material.snackbar.Snackbar
@@ -19,6 +21,7 @@ class FavoriteFragment : Fragment(), FavoriteContract.View {
 
     private var mPresenter : FavoritePresenter? = null
     private var player : MediaPlayer? = null
+    private var memesManager: MemesManager?=null
 
     private val mAdapter by lazy {
         val adapter = context?.let {
@@ -50,9 +53,11 @@ class FavoriteFragment : Fragment(), FavoriteContract.View {
     }
 
     private fun setup() {
+        memesManager= MemesManager(this.context!!)
         mPresenter = FavoritePresenter(this.context!!)
         mPresenter?.attach(this)
         mPresenter?.getListFavorited()
+        fragment_favorited.setBackgroundColor(Color.parseColor(memesManager?.color))
     }
 
     override fun displayError(msg: String?) {

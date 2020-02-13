@@ -1,6 +1,7 @@
 package br.com.memes.ui.home
 
 import android.content.res.AssetFileDescriptor
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.*
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import br.com.memes.R
 import br.com.memes.utils.extensions.setup
 import br.com.memes.model.MemeModel
+import br.com.memes.ui.settings.MemesManager
 import br.com.memes.utils.ShareSom
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -22,6 +24,7 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     private var mPresenter : HomePresenter? = null
     private var player : MediaPlayer? = null
+    private var memesManager: MemesManager?=null
 
     private val mAdapter by lazy {
         val adapter = context?.let {
@@ -50,9 +53,11 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun setup() {
+        memesManager= MemesManager(this.context!!)
         mPresenter = HomePresenter(this.context!!)
         mPresenter?.attach(this)
         mPresenter?.getList()
+        fragment_meme.setBackgroundColor(Color.parseColor(memesManager?.color))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
