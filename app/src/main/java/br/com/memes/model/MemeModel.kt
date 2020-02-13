@@ -10,5 +10,5 @@ class MemeModel(@PrimaryKey val id : String,
                 val name : String,
                 val audio : String,
                 val url : String,
-                val img : Int,
+                val img : String,
                 var isFavorite : Boolean) : Serializable

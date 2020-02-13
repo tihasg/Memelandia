@@ -71,7 +71,7 @@ class MemeAdapter(
                 tv_title.text = item.name
                 val assetManager: AssetManager = context.assets
                 try {
-                    val ims: InputStream = assetManager.open(item.img.toString())
+                    val ims: InputStream = assetManager.open(item.img)
                     val d =
                         Drawable.createFromStream(ims, null)
                     img_meme.setImageDrawable(d)
