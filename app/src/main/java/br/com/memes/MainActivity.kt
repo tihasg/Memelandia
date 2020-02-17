@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -45,9 +46,7 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_fav, R.id.nav_setings
-            ), drawerLayout
+            setOf(R.id.nav_home, R.id.nav_fav, R.id.nav_setings), drawerLayout
         )
         setupActionBarWithNavController(navController!!, appBarConfiguration)
         navView.setupWithNavController(navController!!)
@@ -107,11 +106,13 @@ class MainActivity : AppCompatActivity() {
                 navController?.navigate(R.id.nav_setings)
                 return true
             }
-            R.id.action_search -> {
-                return true
-            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onResume() {
@@ -128,5 +129,6 @@ class MainActivity : AppCompatActivity() {
         var navView : NavigationView?=null
         var tooBar: Toolbar?=null
     }
+
 
 }

@@ -20,6 +20,7 @@ interface HomeContract {
         fun setError(error : Throwable)
         fun sharedMeme(memeModel: MemeModel)
         fun favoriteMeme(memeModel: MemeModel)
+        fun searchMeme(text : String)
     }
 
 }

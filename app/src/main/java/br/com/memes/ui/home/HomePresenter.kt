@@ -20,13 +20,13 @@ import java.nio.charset.Charset
 class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
 
     private var mView : HomeContract.View? = null
-    var memes: ArrayList<MemeModel> = ArrayList()
+    var memes: List<MemeModel> = ArrayList()
 
 
     override fun getList() {
-        var allMemes = MyApplication.database?.memeDao()?.getAllMemes()
+        memes = MyApplication.database?.memeDao()?.getAllMemes()!!
 
-        if(allMemes != null && allMemes.isEmpty()){
+        if(memes.isEmpty()){
             val typeToken = object : TypeToken<ArrayList<MemeModel>>() {}.type
             val listMemes = Gson().fromJson<ArrayList<MemeModel>>(loadJSONFromAsset(), typeToken)
 
@@ -34,11 +34,11 @@ class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
                 MyApplication.database?.memeDao()?.insertMeme(it)
             }
 
-            allMemes = MyApplication.database?.memeDao()?.getAllMemes()
+            memes = MyApplication.database?.memeDao()?.getAllMemes()!!
 
         }
 
-        allMemes?.let { mView?.setList(it) }
+        memes.let { mView?.setList(it) }
     }
 
     override fun setError(error: Throwable) {
@@ -62,6 +62,18 @@ class HomePresenter(private val mContext : Context) : HomeContract.Presenter {
         } else {
             mView?.displayMessageNotFavorite()
         }
+    }
+
+    override fun searchMeme(text: String) {
+        Log.i("searchMeme", text)
+        val listSearch = arrayListOf<MemeModel>()
+        repeat(memes.size){
+            if(memes[it].name.contains(text, true)){
+                listSearch.add(memes[it])
+            }
+        }
+        mView?.setList(listSearch)
+        mView?.notifyDataChanged()
     }
 
     override fun attach(view: HomeContract.View) {

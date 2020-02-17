@@ -4,27 +4,27 @@ import android.content.res.AssetFileDescriptor
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.memes.R
-import br.com.memes.utils.extensions.setup
 import br.com.memes.model.MemeModel
 import br.com.memes.ui.settings.MemesManager
 import br.com.memes.utils.ShareSom
+import br.com.memes.utils.extensions.setup
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
-import java.io.InputStream
-
 
 class HomeFragment : Fragment(), HomeContract.View {
 
     private var mPresenter : HomePresenter? = null
     private var player : MediaPlayer? = null
     private var memesManager: MemesManager?=null
+    private lateinit var mMenu : Menu
 
     private val mAdapter by lazy {
         val adapter = context?.let {
@@ -50,6 +50,23 @@ class HomeFragment : Fragment(), HomeContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup()
+        setListeners()
+    }
+
+    private fun setListeners(){
+        searchView.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                mPresenter?.searchMeme(s.toString())
+            }
+
+        })
     }
 
     private fun setup() {
@@ -59,6 +76,7 @@ class HomeFragment : Fragment(), HomeContract.View {
         mPresenter?.getList()
         fragment_meme.setBackgroundColor(Color.parseColor(memesManager?.color))
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,7 +157,45 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater!!.inflate(R.menu.menu_home, menu)
+        inflater.inflate(R.menu.menu_home, menu)
+        mMenu = menu
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.action_search -> { setVisibleSearch() }
+        }
+
+        when (item.itemId){
+            R.id.action_cancel_search -> { cancelSearch() }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun cancelSearch(){
+        searchView.text.clear()
+        searchView.visibility = View.GONE
+
+        mMenu.findItem(R.id.action_cancel_search).isVisible = false
+        mMenu.findItem(R.id.action_search).isVisible = true
+    }
+
+    private fun setVisibleSearch(){
+        if(searchView.isVisible){
+
+            mMenu.findItem(R.id.action_cancel_search).isVisible = false
+            mMenu.findItem(R.id.action_search).isVisible = true
+
+            searchView.visibility = View.GONE
+        } else {
+
+            mMenu.findItem(R.id.action_search).isVisible = false
+            mMenu.findItem(R.id.action_cancel_search).isVisible = true
+
+            mPresenter?.getList()
+            searchView.visibility = View.VISIBLE
+        }
+    }
+
 }
