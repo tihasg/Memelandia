@@ -1,4 +1,4 @@
-package br.com.memes.utils.extensions
+package br.com.memesbb21.utils.extensions
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

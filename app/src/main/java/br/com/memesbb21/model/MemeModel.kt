@@ -1,4 +1,4 @@
-package br.com.memes.model
+package br.com.memesbb21.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
