@@ -1,4 +1,4 @@
-package br.com.memes.utils
+package br.com.memesbb21.utils
 
 import android.content.Context
 import android.content.Intent

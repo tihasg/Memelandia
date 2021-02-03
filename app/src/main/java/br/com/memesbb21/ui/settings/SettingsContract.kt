@@ -1,7 +1,6 @@
-package br.com.memes.ui.settings
+package br.com.memesbb21.ui.settings
 
-import br.com.memes.model.MemeModel
-import br.com.memes.ui.base.BaseContract
+import br.com.memesbb21.ui.base.BaseContract
 import com.skydoves.colorpickerview.ColorEnvelope
 
 interface SettingsContract {

@@ -1,4 +1,4 @@
-package br.com.memes.ui.base;
+package br.com.memesbb21.ui.base;
 
 public interface BasePresenter<V extends BaseView> {
 

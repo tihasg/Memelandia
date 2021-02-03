@@ -1,4 +1,4 @@
-package br.com.memes.ui.settings
+package br.com.memesbb21.ui.settings
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -11,13 +11,11 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import br.com.memes.MainActivity
-import br.com.memes.R
+import br.com.memesbb21.MainActivity
+import br.com.memesbb21.R
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment(), SettingsContract.View {

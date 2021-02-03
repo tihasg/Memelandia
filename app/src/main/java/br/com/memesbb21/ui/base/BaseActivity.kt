@@ -1,11 +1,9 @@
-package br.com.memes.ui.base
+package br.com.memesbb21.ui.base
 
 import android.content.Context
-import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import br.com.memes.R
+import br.com.memesbb21.R
 
 abstract class BaseActivity : AppCompatActivity() {
 

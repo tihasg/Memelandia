@@ -1,7 +1,7 @@
-package br.com.memes.ui.favorite
+package br.com.memesbb21.ui.favorite
 
-import br.com.memes.model.MemeModel
-import br.com.memes.ui.base.BaseContract
+import br.com.memesbb21.model.MemeModel
+import br.com.memesbb21.ui.base.BaseContract
 
 interface FavoriteContract {
 

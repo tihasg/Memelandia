@@ -1,4 +1,4 @@
-package br.com.memes
+package br.com.memesbb21
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

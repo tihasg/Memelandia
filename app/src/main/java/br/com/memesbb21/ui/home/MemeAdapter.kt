@@ -1,4 +1,4 @@
-package br.com.memes.ui.home
+package br.com.memesbb21.ui.home
 
 import android.content.Context
 import android.content.res.AssetManager
@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.memes.R
-import br.com.memes.model.MemeModel
+import br.com.memesbb21.R
+import br.com.memesbb21.model.MemeModel
 import kotlinx.android.synthetic.main.item_meme.view.*
 import java.io.IOException
 import java.io.InputStream

@@ -1,8 +1,8 @@
-package br.com.memes
+package br.com.memesbb21
 
 import android.app.Application
 import androidx.room.Room
-import br.com.memes.data.AppDataBase
+import br.com.memesbb21.data.AppDataBase
 
 open class MyApplication : Application() {
 

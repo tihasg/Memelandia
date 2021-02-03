@@ -1,4 +1,4 @@
-package br.com.memes.ui.settings
+package br.com.memesbb21.ui.settings
 
 import android.content.Context
 import android.content.SharedPreferences

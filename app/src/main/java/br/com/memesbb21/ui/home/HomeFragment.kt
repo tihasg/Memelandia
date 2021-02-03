@@ -1,4 +1,4 @@
-package br.com.memes.ui.home
+package br.com.memesbb21.ui.home
 
 import android.content.res.AssetFileDescriptor
 import android.graphics.Color
@@ -10,11 +10,11 @@ import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import br.com.memes.R
-import br.com.memes.model.MemeModel
-import br.com.memes.ui.settings.MemesManager
-import br.com.memes.utils.ShareSom
-import br.com.memes.utils.extensions.setup
+import br.com.memesbb21.R
+import br.com.memesbb21.model.MemeModel
+import br.com.memesbb21.ui.settings.MemesManager
+import br.com.memesbb21.utils.ShareSom
+import br.com.memesbb21.utils.extensions.setup
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.IOException

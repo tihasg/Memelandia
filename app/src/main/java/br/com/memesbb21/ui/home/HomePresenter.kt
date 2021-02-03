@@ -1,19 +1,11 @@
-package br.com.memes.ui.home
+package br.com.memesbb21.ui.home
 
 import android.content.Context
-import android.content.Intent
-import android.content.res.AssetFileDescriptor
-import android.content.res.AssetManager
-import android.media.MediaPlayer
 import android.util.Log
-import androidx.core.content.FileProvider
-import br.com.memes.MyApplication
-import br.com.memes.model.MemeModel
+import br.com.memesbb21.MyApplication
+import br.com.memesbb21.model.MemeModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.Charset
 

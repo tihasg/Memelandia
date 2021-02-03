@@ -1,4 +1,4 @@
-package br.com.memes
+package br.com.memesbb21
 
 import org.junit.Test
 

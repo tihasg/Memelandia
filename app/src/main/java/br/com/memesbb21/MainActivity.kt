@@ -1,4 +1,4 @@
-package br.com.memes
+package br.com.memesbb21
 
 import android.Manifest
 import android.app.Activity
@@ -20,10 +20,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import br.com.memes.ui.settings.MemesManager
+import br.com.memesbb21.ui.settings.MemesManager
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class MainActivity : AppCompatActivity() {

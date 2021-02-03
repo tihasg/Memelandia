@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">memes</string>
+    <string name="app_name">Big Memes 21</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_search">Buscar Memes</string>
     <string name="action_settings">Configuraçōes</string>
     <string name="action_backs">Voltar</string>
 
-    <string name="menu_meme">Memes</string>
+    <string name="menu_meme">Big Memes 21</string>
     <string name="menu_favorited">Favoritos</string>
     <string name="menu_settings">Configuraçōes</string>
     <string name="menu_share">Compartilhar App</string>

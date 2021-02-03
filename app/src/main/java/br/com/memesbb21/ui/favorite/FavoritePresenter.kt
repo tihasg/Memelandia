@@ -1,8 +1,8 @@
-package br.com.memes.ui.favorite
+package br.com.memesbb21.ui.favorite
 
 import android.content.Context
-import br.com.memes.MyApplication
-import br.com.memes.model.MemeModel
+import br.com.memesbb21.MyApplication
+import br.com.memesbb21.model.MemeModel
 
 class FavoritePresenter(private val mContext : Context) : FavoriteContract.Presenter {
 

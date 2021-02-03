@@ -1,8 +1,6 @@
-package br.com.memes.ui.settings
+package br.com.memesbb21.ui.settings
 
 import android.content.Context
-import br.com.memes.MyApplication
-import br.com.memes.model.MemeModel
 
 class SettingsPresenter(private val mContext : Context) : SettingsContract.Presenter {
 
