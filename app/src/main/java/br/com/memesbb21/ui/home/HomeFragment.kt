@@ -42,7 +42,7 @@ class HomeFragment : Fragment(), HomeContract.View {
                 }
             })
         }
-        adapter?.let {rv_meme.setup(it, layoutManager = GridLayoutManager(context, 3))}
+        adapter?.let {rv_meme.setup(it, layoutManager = GridLayoutManager(context, 2))}
         adapter
     }
 
@@ -74,7 +74,7 @@ class HomeFragment : Fragment(), HomeContract.View {
         mPresenter = HomePresenter(this.context!!)
         mPresenter?.attach(this)
         mPresenter?.getList()
-        fragment_meme.setBackgroundColor(Color.parseColor(memesManager?.color))
+       // fragment_meme.setBackgroundColor(Color.parseColor(memesManager?.color))
     }
 
 

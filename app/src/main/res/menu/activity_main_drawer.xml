@@ -10,7 +10,7 @@
             android:title="@string/menu_meme" />
         <item
             android:id="@+id/nav_fav"
-            android:icon="@drawable/ic_favorite_menu"
+            android:icon="@drawable/ic_favorite_red"
             android:title="@string/menu_favorited" />
     </group>
 
