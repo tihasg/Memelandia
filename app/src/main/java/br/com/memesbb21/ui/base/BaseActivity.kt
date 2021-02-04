@@ -13,7 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
         get() = this
 
     //MENU METHODS
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
             R.id.action_settings -> {
                 return true
