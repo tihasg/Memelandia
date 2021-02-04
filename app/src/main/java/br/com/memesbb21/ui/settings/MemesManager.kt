@@ -9,7 +9,7 @@ class MemesManager(private var _context: Context) {
     private var PRIVATE_MODE = 0
 
     var color: String?
-        get() = pref.getString(KEY_COLOR, "#42a3b2")
+        get() = pref.getString(KEY_COLOR, "#282828")
         set(color) {
             editor.putString(KEY_COLOR, color)
             editor.commit()

@@ -86,11 +86,11 @@ class SettingsFragment : Fragment(), SettingsContract.View {
     }
 
     fun resetAllSettings() {
-        setHomeActivityColor(Color.parseColor("#42a3b2"))
+        setHomeActivityColor(Color.parseColor("#282828"))
     }
 
     fun setHomeActivityColor(color: Int) {
-        memesManager?.color = "#42a3b2"
+        memesManager?.color = "#282828"
         Color.parseColor(memesManager?.color)
         theme_color_img.setBackgroundColor(color)
         setColor()

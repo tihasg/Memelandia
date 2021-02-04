@@ -51,7 +51,7 @@ class MemeAdapter(
         fun bind(item: MemeModel, onItemClickListerner: OnItemClickListener) {
 
             itemView.apply {
-                img_meme.setOnClickListener {
+                play.setOnClickListener {
                     onItemClickListerner.onItemClicked(item)
                 }
 
